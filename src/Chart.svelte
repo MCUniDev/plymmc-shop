@@ -60,6 +60,6 @@
         responsive: true,
         scales: {
             x: { title: { display: true, text: 'Time (15 Minute Intervals)' } },
-            y: { title: { display: true, text: `Price for ${point[0]}` } },
+            y: { title: { display: true, text: 'Price per item' } },
         },
     }} />
