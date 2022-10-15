@@ -1,7 +1,7 @@
 <script lang="ts">
-    import ChevronUpIcon from 'src/icons/ChevronUpIcon.svelte';
+    import ChevronUpIcon from '../icons/ChevronUpIcon.svelte';
     import { clickoutside } from '@svelte-put/clickoutside';
-    import CheckIcon from 'src/icons/CheckIcon.svelte';
+    import CheckIcon from '../icons/CheckIcon.svelte';
     import fuzzysearch from 'fuzzysearch';
 
     export let options: string[];
