@@ -8,8 +8,12 @@
 
     async function loadData(): Promise<Data> {
         const res = await fetch('https://upmc-shop-csv.deno.dev');
-        const csvData = await res.text();
 
+        if (!res.ok) {
+            throw new Error('Response not OK');
+        }
+
+        const csvData = await res.text();
         const result: RawData = await csv().fromString(csvData);
 
         // This is an object of an item (e.g. cake) to an array of it's prices
