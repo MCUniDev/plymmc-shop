@@ -1,8 +1,8 @@
 <script lang="ts">
     import type { RawData, Data } from './types';
-    import csv from 'csvtojson';
-    import Chart from './Chart.svelte';
     import Combobox from './Combobox.svelte';
+    import Chart from './Chart.svelte';
+    import csv from 'csvtojson';
 
     let selected: string;
 

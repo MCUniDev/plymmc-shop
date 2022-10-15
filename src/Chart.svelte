@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { Line } from 'svelte-chartjs';
     import type { DataPoint } from './types';
+    import { Line } from 'svelte-chartjs';
 
     import {
         Chart as ChartJS,
