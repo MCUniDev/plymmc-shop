@@ -36,7 +36,7 @@
     }
 </script>
 
-<main class="space-y-6 max-w-5xl mx-auto px-4">
+<main class="space-y-6 max-w-7xl mx-auto px-4">
     <div class="my-4 text-center space-y-2">
         <img class="w-96 mx-auto" src="/UOPMC.webp" alt="UOPMC Logo" />
         <h1 class="font-medium text-2xl">Survival Shop Price History</h1>
