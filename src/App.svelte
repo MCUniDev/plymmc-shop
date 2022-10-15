@@ -22,6 +22,9 @@
         for (const row of result) {
             // Loop over every row in the csv and merge the data
             for (const [key, value] of Object.entries(row)) {
+                // fix weird bug
+                if (key == 'field462') continue;
+
                 if (!data[key]) {
                     data[key] = [];
                 }
