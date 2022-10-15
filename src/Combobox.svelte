@@ -51,7 +51,7 @@
     }
 </script>
 
-<div class="relative max-w-6xl mx-auto" use:clickoutside on:clickoutside={exit}>
+<div class="relative" use:clickoutside on:clickoutside={exit}>
     <input
         type="text"
         class="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-12 shadow-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500 sm:text-sm"
