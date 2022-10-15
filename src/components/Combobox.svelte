@@ -9,6 +9,7 @@
 
     let query = '';
     let open = false;
+    let focused = '';
     let selected = '';
 
     $: filteredOptions = filter(query, options);
@@ -23,6 +24,7 @@
 
     function select(option: string) {
         selected = option;
+        focused = option;
         value = option;
         query = option;
     }
@@ -30,23 +32,53 @@
     function exit() {
         toggle(false);
         select(filteredOptions[0] || value);
+        focused = selected;
+    }
+
+    function focusItem(item: string) {
+        const node = document.querySelector(`#item-${item}`);
+        if (node) node.scrollIntoView({ block: 'end' });
     }
 
     function keyDown(event: KeyboardEvent) {
         toggle(true);
 
-        if (event.key == 'Enter') {
-            select(filteredOptions[0] || value);
+        switch (event.key) {
+            case 'ArrowDown': {
+                const index = filteredOptions.indexOf(focused);
+
+                if (filteredOptions.length) {
+                    focused = filteredOptions[index + 1] || focused;
+                    focusItem(focused);
+                }
+                break;
+            }
+
+            case 'ArrowUp': {
+                const index = filteredOptions.indexOf(focused);
+
+                if (focused.length && index && filteredOptions[index - 1]) {
+                    focused = filteredOptions[index - 1];
+                    focusItem(focused);
+                }
+                break;
+            }
+
+            case 'Enter':
+                select(focused == selected ? filteredOptions[0] || value : focused);
+                toggle(false);
+                break;
+
+            case 'Escape':
+                toggle(false);
+                break;
         }
     }
 
     function filter(query: string, options: string[]) {
         if (query.trim().length) {
             const needle = query.replace(/ /g, '_').toLowerCase();
-
-            return options.filter((option) =>
-                fuzzysearch(needle, option.toLowerCase()),
-            );
+            return options.filter((option) => fuzzysearch(needle, option.toLowerCase()));
         }
 
         return options;
@@ -80,19 +112,22 @@
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
                 <li
                     class="relative select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-green-500 cursor-pointer group"
+                    class:bg-green-500={option == focused}
                     aria-selected={option == selected}
                     on:click={() => select(option)}
-                    role="option"
-                    tabindex="-1">
+                    id="item-{option}"
+                    role="option">
                     <span
                         class="block truncate group-hover:text-white"
-                        class:font-medium={option == selected}>
+                        class:font-medium={option == selected}
+                        class:text-white={option == focused}>
                         {option}
                     </span>
 
-                    {#if option == selected}
+                    {#if option == selected || option == focused}
                         <span
-                            class="absolute inset-y-0 right-0 flex items-center pr-4 text-green-600 group-hover:text-white">
+                            class="absolute inset-y-0 right-0 flex items-center pr-4 text-green-600 group-hover:text-white"
+                            class:text-white={option == focused}>
                             <CheckIcon />
                         </span>
                     {/if}
