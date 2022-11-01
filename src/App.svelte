@@ -31,6 +31,8 @@
                     data[key] = [];
                 }
 
+                console.log(key, value);
+
                 if (value.length) {
                     data[key].push(+value);
                 }
@@ -51,7 +53,7 @@
         <p class="text-center text-2xl mt-32 pt-32" style="font-family: 'Times New Roman', sans-serif;">
             LOADING...
         </p>
-        <p class="text-center mt-32 pt-32">
+        <p class="text-center mt-32">
             <i class="fa-solid fa-sync fa-spin fa-4x" aria-hidden="true"></i>
         </p>
     {:then data}
@@ -60,6 +62,20 @@
         </div>
 
         {#if selected}
+            <!--<div class="my-4 grid grid-cols-3">
+                <div class="border rounded-md">
+                    <strong>Current Price</strong><br>
+                    $0.00
+                </div>
+                <div class="border rounded-md">
+                    <strong>Original Price</strong><br>
+                    $0.00
+                </div>
+                <div class="border rounded-md">
+                    <strong>Percentage Change</strong><br>
+                    %0.00
+                </div>
+            </div>-->
             <Chart point={data.find((d) => d[0] == selected)} />
         {/if}
 
