@@ -11,12 +11,14 @@
     async function loadData(): Promise<Data> {
         const res = await fetch('https://upmc-shop-csv.deno.dev');
 
+
         if (!res.ok) {
             throw new Error('Response not OK');
         }
 
         const csvData = await res.text();
         const result: RawData = await csv().fromString(csvData);
+        await console.log(result);
 
         // This is an object of an item (e.g. cake) to an array of it's prices
         const data: Record<string, number[]> = {};
@@ -30,8 +32,6 @@
                 if (!data[key]) {
                     data[key] = [];
                 }
-
-                console.log(key, value);
 
                 if (value.length) {
                     data[key].push(+value);
