@@ -48,10 +48,10 @@
     </div>
 
     {#await promise}
-        <p class="text-center text-2xl mt-32" style="font-family: 'Times New Roman', sans-serif;">
+        <p class="text-center text-2xl mt-32 pt-32" style="font-family: 'Times New Roman', sans-serif;">
             LOADING...
         </p>
-        <p class="text-center mt-32">
+        <p class="text-center mt-32 pt-32">
             <i class="fa-solid fa-sync fa-spin fa-4x" aria-hidden="true"></i>
         </p>
     {:then data}
