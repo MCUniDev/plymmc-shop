@@ -44,11 +44,11 @@
 <main class="space-y-6 max-w-7xl mx-auto px-4">
     <div class="my-4 text-center space-y-2">
         <img class="w-96 mx-auto" src="/UOPMC.webp" alt="UOPMC Logo" />
-        <h1 class="font-medium text-2xl">Survival Shop Price History</h1>
+        <h1 class="font-medium text-2xl">Survival Shop</h1>
     </div>
 
     {#await promise}
-        <p class="text-center font-medium">Loading...</p>
+        <p class="text-center"><i class="fa-solid fa-sync fa-spin fa-4x" aria-hidden="true"></i></p>
     {:then data}
         <div class="max-w-6xl mx-auto w-full">
             <Combobox options={data.map((d) => d[0])} bind:value={selected} />
@@ -66,6 +66,6 @@
             </button>
         </div>
     {:catch error}
-        <p class="text-center font-medium text-red-500">{error}</p>
+        <p class="text-center font-medium text-red-700 bg-red-100 border-l-2 border-red-700 px-2 py-1">{error}</p>
     {/await}
 </main>
