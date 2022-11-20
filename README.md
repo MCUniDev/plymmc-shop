@@ -1,8 +1,8 @@
-# UOP Shop
+# PlymMC Shop
 
 This Website provides a searchable graph of shop prices overtime.
 
-https://survivalshop.uopmc.com/
+https://survivalshop.mcuni.org/
 
 # Tech
 
